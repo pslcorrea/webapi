@@ -11,11 +11,25 @@ server.addListener("request", (request, response) => {
     response.write(JSON.stringify(stock));
     response.end();
   }
-  if (urlObject.pathname === "/get-missing-products") {
+  if (
+    urlObject.pathname === "/get-missing-products" &&
+    request.method === "GET"
+  ) {
     const missingProducts = stock.filter((product) => product.amountLeft === 0);
     response.writeHead(200, { "Content-Type": "application/json" });
     response.write(JSON.stringify(missingProducts));
     response.end();
+  }
+  if (
+    urlObject.pathname === "/get-missing-products" &&
+    request.method === "POST"
+  ) {
+    response.writeHead(405, { "Content-Type": "text/plain" });
+    response.write(
+      "Esse endpoint não permite o acesso por meio de uma requisição do tipo Post!"
+    );
+    response.end();
+    return;
   }
   if (urlObject.pathname === "/get-by-id") {
     const idParam = urlObject.searchParams.get("id");
