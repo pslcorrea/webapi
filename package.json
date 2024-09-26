@@ -1,0 +1,20 @@
+{
+  "name": "webapi",
+  "version": "1.0.0",
+  "description": "API para controle de estoque, desenvolvida no curso de JavaScript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pslcorrea/webapi.git"
+  },
+  "author": "pslcorrea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pslcorrea/webapi/issues"
+  },
+  "homepage": "https://github.com/pslcorrea/webapi#readme",
+  "type": "module"
+}
