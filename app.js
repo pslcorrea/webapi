@@ -1,6 +1,7 @@
 import http from "node:http";
 import { stock } from "./stock.js";
 import { URL } from "node:url";
+import jsonBody from "body/json.js";
 
 const server = http.createServer();
 let productStock = [...stock];
@@ -75,6 +76,31 @@ server.addListener("request", (request, response) => {
     response.write(JSON.stringify(selectedObject ?? {}));
     response.end();
     return;
+  }
+  if (urlObject.pathname === "/create" && request.method === "POST") {
+    jsonBody(request, response, (error, body) => {
+      // Verificar se está tudo ok com a requisição
+      if (error) {
+        response.writeHead(400, { "Content-type": "text/plain" });
+        response.write("Erro ao processar a requisição. ");
+        response.write(error.message);
+        response.end();
+        return;
+      }
+      // Implementar lógica de adição do novo produto ao estoque
+      const { productName, amountLeft } = body;
+      const newProduct = {
+        id: productStock.length,
+        productName,
+        amountLeft,
+      };
+      productStock.push(newProduct);
+      // Retornar novo produto
+      response.writeHead(200, { "Content-type": "application/json" });
+      response.write(JSON.stringify(newProduct));
+      response.end();
+      return;
+    });
   }
 });
 

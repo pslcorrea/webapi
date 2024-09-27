@@ -4,7 +4,8 @@
   "description": "API para controle de estoque, desenvolvida no curso de JavaScript",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch ."
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
     "url": "https://github.com/pslcorrea/webapi/issues"
   },
   "homepage": "https://github.com/pslcorrea/webapi#readme",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "body": "^5.1.0"
+  }
 }
